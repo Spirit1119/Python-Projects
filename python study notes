@@ -1,0 +1,3 @@
+# Functions
+1. combine two lists: list3 = list1 + list2
+2. list elements sequence: list.sort(cmp=None, key=None, reverse=False)
