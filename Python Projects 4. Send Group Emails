@@ -1,0 +1,98 @@
+# Python Projects 4. Send Group Emails
+## Method 1. Using Lists
+
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+
+from_addr = 'xxx@xx.com'
+password = ''
+
+to_addrs = ['xx@xx.com','xxx@xx.com']
+
+smtp_server = 'smtp.xx.com'
+
+text='''
+      xxx
+'''
+msg = MIMEText(text,'plain','utf-8')
+
+msg['From'] = Header(from_addr)
+msg['To'] = Header(",".join(to_addrs)) 
+msg['Subject'] = Header('python test')
+
+server = smtplib.SMTP_SSL()
+server.connect(smtp_server,465)
+server.login(from_addr, password)
+server.sendmail(from_addr, to_addr, msg.as_string())
+server.quit()
+
+## Method 2. While Loop
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+
+from_addr = input('Please input your email address:')
+password = input('Please input your email password:')
+
+to_addrs = []
+while True:
+    a=input('Please input the receiver address:')
+    to_addrs.append(a)
+    b=input('Press N to exit, or continue with any button:')
+    if b == 'N':
+        break
+
+smtp_server = 'smtp.xx.com'
+
+text='''xxxx
+xxxx
+'''
+msg = MIMEText(text,'plain','utf-8')
+
+msg['From'] = Header(from_addr)
+msg['To'] = Header(",".join(to_addrs)) 
+msg['Subject'] = Header('python test')
+
+server = smtplib.SMTP_SSL(smtp_server)
+server.connect(smtp_server,465)
+server.login(from_addr, password)
+server.sendmail(from_addr, to_addrs, msg.as_string())
+server.quit()
+
+## Method 3. With CSV Module
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+import csv
+
+from_addr = input('Please input your email address:')
+password = input('Please input your email password:')
+
+smtp_server = 'smtp.xx.com'
+
+text='''xxxx
+xxx
+'''
+
+data = [['xx', 'xx@xx.com'],['xxx', 'xxx@qxx.com']]
+
+with open('to_addrs.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for row in data:
+        writer.writerow(row)
+
+with open('to_addrs.csv', 'r') as f:
+    reader = csv.reader(f)
+    for row in reader: 
+        to_addrs=row[1]
+        msg = MIMEText(text,'plain','utf-8')
+        msg['From'] = Header(from_addr)
+        msg['To'] = Header(to_addrs)
+        msg['Subject'] = Header('python test')
+        server = smtplib.SMTP_SSL()
+        server.connect(smtp_server,465)
+        server.login(from_addr, password)
+        server.sendmail(from_addr, to_addrs, msg.as_string())
+
+server.quit()
