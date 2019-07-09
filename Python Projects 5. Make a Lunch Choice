@@ -1,0 +1,28 @@
+# Python Projects 5. Make a Lunch Decision
+import random
+
+list_food = ['McDonalds', 'Curry', 'Jimmy Johns', 'Dumplings', 'Porridge', 'Braised Pork Rice', 'Omelette', 'Hot Pot'] 
+list_choice = []
+
+def choose(list):
+    while True:
+        food = random.choice(list)
+        judgement = input("Would you like【%s】? Input Y as Agree, or press ENTER." % (food))
+        if judgement == 'Y':
+            print("Let's go to eat 【%s】"%(food)) 
+            break
+
+reason = int(input("Why you can't decide what to have：1.Totally have no idea; 2.Hesitating...(choose 1 or 2)"))
+if reason == 1:
+    choose(list_food)
+elif reason == 2:
+    add = True
+    while add:
+        choice = input('Please input the potential choices (input one by one with Y at end):')
+        if choice != 'Y':  
+            list_choice.append(choice)
+        if choice == 'Y':
+            add = False
+    choose(list_choice)          
+else:
+    print("We'll try to solve other potential problems in the future")
