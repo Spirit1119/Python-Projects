@@ -1,3 +1,6 @@
 # Functions
 1. combine two lists: list3 = list1 + list2
 2. list elements sequence: list.sort(cmp=None, key=None, reverse=False)
+
+# Crawlers 101:
+1. response.status_code = 200, means successful requests
