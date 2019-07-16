@@ -4,3 +4,4 @@
 
 # Crawlers 101:
 1. response.status_code = 200, means successful requests
+2. check the protcol at: https://xxxx.com/robots.txt
